@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"github.com/brunacotrim/api-go/controller"
+	"github.com/brunacotrim/api-go/src/controller"
 	"github.com/gin-gonic/gin"
 )
 

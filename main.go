@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/brunacotrim/api-go/controller/routes"
+	"github.com/brunacotrim/api-go/src/controller/routes"
 	"github.com/gin-gonic/gin"
 )
 
