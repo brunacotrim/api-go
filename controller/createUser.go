@@ -1,11 +1,23 @@
 package controller
 
 import (
-	"github.com/brunacotrim/api-go/configuration/rest_err"
+	"fmt"
+	"log"
+
+	"github.com/brunacotrim/api-go/configuration/validation"
+	"github.com/brunacotrim/api-go/controller/model/request"
 	"github.com/gin-gonic/gin"
 )
 
 func CreateUser(c *gin.Context) {
-	err := rest_err.NewBadRequestError("Não implementada a inclusão de usuários")
-	c.JSON(err.Code, err)
+	var userRequest request.UserRequest
+
+	if err := c.ShouldBindJSON(&userRequest); err != nil {
+		log.Printf("Error trying to marshal object, error=%s", err.Error())
+		errRest := validation.ValidateUserError(err)
+		c.JSON(errRest.Code, errRest)
+		return
+	}
+
+	fmt.Println(userRequest)
 }
