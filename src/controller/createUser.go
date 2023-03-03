@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/brunacotrim/api-go/configuration/validation"
-	"github.com/brunacotrim/api-go/controller/model/request"
+	"github.com/brunacotrim/api-go/src/configuration/validation"
+	"github.com/brunacotrim/api-go/src/controller/model/request"
 	"github.com/gin-gonic/gin"
 )
 
