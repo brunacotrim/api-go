@@ -1,23 +1,29 @@
 package controller
 
 import (
-	"fmt"
-	"log"
-
+	"github.com/brunacotrim/api-go/src/configuration/logger"
 	"github.com/brunacotrim/api-go/src/configuration/validation"
 	"github.com/brunacotrim/api-go/src/controller/model/request"
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 )
 
 func CreateUser(c *gin.Context) {
+
+	logger.Info("Init CreateUser controller",
+		zap.String("journey", "CreateUser"),
+	)
+
 	var userRequest request.UserRequest
 
 	if err := c.ShouldBindJSON(&userRequest); err != nil {
-		log.Printf("Error trying to marshal object, error=%s", err.Error())
+		logger.Error("Error trying to validate user info", err)
 		errRest := validation.ValidateUserError(err)
 		c.JSON(errRest.Code, errRest)
 		return
 	}
 
-	fmt.Println(userRequest)
+	logger.Info("User created successfully",
+		zap.String("journey", "CreateUser"),
+	)
 }
